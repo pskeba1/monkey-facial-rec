@@ -4,14 +4,17 @@ November 30, 2021
 
 The pre-trained landmark detectors must be downloaded from the below Google Drive link:
 
-[]
+https://drive.google.com/file/d/156XXbsMO3ZWci5llqKP74zEYw3izyy4P/view?usp=sharing
 
 Please unzip the archive so that there are two .dat files located in `monkey-face-rec/
 models/`.
 
 
 Two scripts are included that will generate predictions for face images based on shape
-and appearance dimensions inspired by Chang et al 2017. 
+and appearance dimensions inspired by Chang et al 2017. Script A. requires no additional
+downloads (aside from the landmark models), while Script B. requires downloading a subset
+of the Color FERET dataset. Both scripts will generate identical results. Files should be
+executed from within the `src` subfolder to maintain relative paths.
 
 A. RUNALL_FEATURES.py - requires only files available in the github repository [] and in the
 	zip file submitted on coursesite. Begins with shape (landmark location) and appearance (
