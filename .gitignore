@@ -1,0 +1,8 @@
+figures/*
+data/colorferet100/*
+data/feret100_shapeless/*
+data/feret100_straight/*
+models/shape_predictor_5_face_landmarks.dat
+models/shape_predictor_68_face_landmarks.dat
+*.DS_Store
+src/__pycache__/*

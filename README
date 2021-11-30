@@ -1,0 +1,63 @@
+Patrick Skeba
+November 30, 2021
+
+
+The pre-trained landmark detectors must be downloaded from the below Google Drive link:
+
+[]
+
+Please unzip the archive so that there are two .dat files located in `monkey-face-rec/
+models/`.
+
+
+Two scripts are included that will generate predictions for face images based on shape
+and appearance dimensions inspired by Chang et al 2017. 
+
+A. RUNALL_FEATURES.py - requires only files available in the github repository [] and in the
+	zip file submitted on coursesite. Begins with shape (landmark location) and appearance (
+	pixel intensity) dimensions, ends with prediction on 76 unseen testing examples.
+
+B. RUNALL_IMAGES.py - run the entire pipeline, including image straightening, registration,
+	and other preprocessing steps. Requires downloading supplemental data from the following 
+	Google Drive link (175 MB):
+
+	https://drive.google.com/file/d/152xZD5WxVc76JAfr6NafnQC0t33MuYc_/view?usp=sharing
+
+	Please unzip this folder in the `data` subdirectory (result should be Final/data/
+	colorferet100). There are actually 250 individuals in this folder, despite the name.
+
+
+
+
+Order of files and functions and descriptions.
+
+1. unzip_feret.py - the color FERET data compressed all the files individually. Helper
+	script to unzip only front-facing images. This does not need to be run again
+
+2. straighten_faces.py - straighten faces that are tilted and crop to uniform 320x320
+
+3. detect_landmarks.py:get_landmarks() - for each image, extract 68 landmarks and store in a
+	pandas dataframe. 
+
+4. detect_landmarks.py:find_average_face() - average landmark locations across all faces to
+	form the target which we will deform towards.
+
+5. morph_faces.py:warp_faces() - deform images according to the average landmark locations.
+	Also reduce size to (120,120) to make number of intensity features more manageable.
+
+6. morph_faces.py:shapeless_intensities() - using the shapeless faces generated in the
+	previous step, save flattened grayscale intensity values for each face.
+
+7. get_components:main() - Generate predictions for test data by calculating euclidean
+	distance to each face-representation from the test set. Rank predictions according
+	to minimum distance. Returns a plot showing whether the correct guess appears within
+	the top N predictions (e.g. for 25% of test samples, the top guess is exactly correct, 50% are in the top 8).
+
+	7a. get_components:shape_pca() - perform Principal Component Analysis to reduce number 
+		of shape features (i.e. landmark locations) to 25. PCA model is fit using only a 
+		single sample from each individual in the dataset. Images 2-X of individuals with 
+		more than one	are	set aside for testing after being transformed by the fit PCA 
+		model.
+
+	7b. get_components:shapeless_pca() - likewise to Step 7, except using the 14,400 intensity
+		features from Step 6. First 25 components are kept.
