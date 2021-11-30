@@ -6,7 +6,7 @@ The pre-trained landmark detectors must be downloaded from the below Google Driv
 
 https://drive.google.com/file/d/156XXbsMO3ZWci5llqKP74zEYw3izyy4P/view?usp=sharing
 
-Please unzip the archive so that there are two .dat files located in `monkey-face-rec/
+Please unzip the archive so that there are two .dat files located in `monkey-facial-rec/
 models/`.
 
 
@@ -26,7 +26,7 @@ B. RUNALL_IMAGES.py - run the entire pipeline, including image straightening, re
 
 	https://drive.google.com/file/d/152xZD5WxVc76JAfr6NafnQC0t33MuYc_/view?usp=sharing
 
-	Please unzip this folder in the `data` subdirectory (result should be Final/data/
+	Please unzip this folder in the `data` subdirectory (result should be monkey-facial-rec/data/
 	colorferet100). There are actually 250 individuals in this folder, despite the name.
 
 
